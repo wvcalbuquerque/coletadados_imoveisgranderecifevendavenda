@@ -4,6 +4,10 @@ Projeto de portfólio que realiza técnica de webscraping para captura de dados 
 **Webscraping:** Técnica utilizada para extrair rapidamente informações de sites e exportá-las para planilhas, arquivos texto e/ou base de dados, com o intuito de fazer análises e gerar insights para tomadas de decisão.
 
 ### Pré requisitos:
+Banco NOSQL: MongoDBCompassCommunity
+
+Linguagem de Programação: NodeJS
+
 Instalar os pacotes:
 <ul>
   <li>axios</li>
