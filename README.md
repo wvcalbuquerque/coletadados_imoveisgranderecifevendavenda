@@ -17,3 +17,5 @@ Instalar os pacotes:
 ```
 npm i axios cheerio request puppeteer string mongoose
 ```
+#### Exemplo de documento extraído:
+![Legenda](https://github.com/wvcalbuquerque/coletadados_imoveisgranderecifevendavenda/blob/main/img/exemplo_documento.jpg)
