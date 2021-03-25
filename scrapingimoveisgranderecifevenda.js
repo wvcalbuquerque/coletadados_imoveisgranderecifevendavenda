@@ -174,8 +174,8 @@ const coletadados = async (pg) =>{
         }
 
         documento = {titulo, valorreal, datapublicacao, horapublicacao, codigo, categoria, tipo, condominio, iptu, areautil, quartos, banheiros, vagas, detalhesimovel, detalhescondominio, cep, municipio, bairro, logradouro, pg} 
-        console.log(documento)       
-        console.log('############################################################################################');
+        //console.log(documento)       
+        //console.log('############################################################################################');
 
         //CONEXÃO COM BANCO DE DADOS        
         var MongoClient = require('mongodb').MongoClient;
@@ -188,14 +188,43 @@ const coletadados = async (pg) =>{
             dbo.collection("imoveisgranderecifevenda").find(query).toArray(function(err, result) {
                 if (err) throw err;
                 if (result.length > 0){
-                    console.log('Imóvel já cadastrado!')
+                    console.log('Imóvel código: '+documento.codigo+' já cadastrado!')
+                    //
+                    var filter = { codigo: documento.codigo };
+                    var update = { $set: {codigo: documento.codigo, 
+                        titulo: documento.titulo,
+                        valorreal: documento.valorreal,
+                        datapublicacao: documento.datapublicacao,
+                        horapublicacao: documento.horapublicacao,
+                        categoria: documento.categoria,
+                        tipo: documento.tipo,
+                        condominio: documento.condominio,
+                        iptu: documento.iptu,
+                        areautil: documento.areautil,
+                        quartos: documento.quartos,
+                        banheiros: documento.banheiros,
+                        vagas: documento.vagas,
+                        detalhesimovel: documento.detalhesimovel,
+                        detalhescondominio: documento.detalhescondominio,
+                        cep: documento.cep,
+                        municipio: documento.municipio,
+                        bairro: documento.bairro,
+                        logradouro: documento.logradouro,
+                        pg: documento.pg
+                        } };  
+                    dbo.collection("imoveisgranderecifevenda").updateOne(filter, update, function(err, res) {
+                        if (err) throw err;
+                        console.log("Imóvel código: "+ documento.codigo +" atualizado!");
+                        db.close();
+                    });
+                    //
                 }else{
                     dbo.collection("imoveisgranderecifevenda").insertOne(documento, function(err, res) {
                         if (err) throw err;
-                        console.log("Cadastro realizado!");
+                        console.log("Imóvel código: "+ documento.codigo +" cadastrado!");
+                        db.close();
                     });
-                }
-                db.close();
+                }                
             });            
         });
                 
